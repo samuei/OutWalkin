@@ -86,5 +86,3 @@ public class World {
 	}
 
 }
-
-// http://stackoverflow.com/questions/2711067/how-do-i-dynamically-name-objects-in-java
