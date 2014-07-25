@@ -24,7 +24,6 @@ public class World {
 	      for(int k = 0; k<numRms;k++){
 	    	  // returnValue, after this loop, holds the room desc.
 		      while (!(line.equals("#"))) {
-			System.out.println(line);
 		        returnValue += line + "\n";
 			line = reader.readLine();
 		      }
@@ -35,7 +34,6 @@ public class World {
 		  Rooms[k].sroom = Integer.parseInt(reader.readLine());
 		  Rooms[k].wroom = Integer.parseInt(reader.readLine());
 		  System.out.println("Got into For.");
-		//reader.close();
 	      }
 	      reader.close();
 	      }
