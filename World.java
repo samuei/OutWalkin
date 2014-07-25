@@ -20,18 +20,24 @@ public class World {
 	      line = reader.readLine();
 	      int numRms = Integer.parseInt(line);
 		Rooms = new Room[numRms];
+		line = reader.readLine();
 	      for(int k = 0; k<numRms;k++){
 	    	  // returnValue, after this loop, holds the room desc.
-		      while ((line = reader.readLine()) != "#") {
+		      while (!(line.equals("#"))) {
+			System.out.println(line);
 		        returnValue += line + "\n";
+			line = reader.readLine();
 		      }
+		  reader.readLine();    
 		  Rooms[k].desc = returnValue;
 		  Rooms[k].nroom = Integer.parseInt(reader.readLine());
 		  Rooms[k].eroom = Integer.parseInt(reader.readLine());
 		  Rooms[k].sroom = Integer.parseInt(reader.readLine());
 		  Rooms[k].wroom = Integer.parseInt(reader.readLine());
-		reader.close();
+		  System.out.println("Got into For.");
+		//reader.close();
 	      }
+	      reader.close();
 	      }
 	      finally {
 		if (file != null){
