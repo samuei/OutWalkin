@@ -10,7 +10,7 @@ public class OutWalkin {
 		// TODO: Magic number due to not having save game functionality:
 		int cur = 0;
 		System.out.println("Let's go walking!");
-		// TODO: Compiler error due to not having a World class built:
+		// TODO: Yell at user for not having a World file selected
 		try{
 			world = new World(args[0]);
 		}
@@ -21,21 +21,21 @@ public class OutWalkin {
 		do{
 			world.display(cur);
 			System.out.println("Where would you like to go?");
-			cmd = scanner.next();
+			cmd = new String(scanner.next());
 			// I'd love to use a switch, here, but JDK6 :(
-			if(cmd == "n" || cmd == "north"){
+			if(cmd.equals("n") || cmd.equals("north")){
 				cur = world.goN(cur);
 			}
-			else if (cmd == "s"||cmd=="south"){
+			else if (cmd.equals("s")||cmd.equals("south")){
 				cur = world.goS(cur);
 			}
-			else if (cmd == "e"||cmd=="east"){
+			else if (cmd.equals("e")||cmd.equals("east")){
 				cur = world.goE(cur);
 			}
-			else if (cmd == "w"||cmd=="west"){
+			else if (cmd.equals("w")||cmd.equals("west")){
 				cur = world.goW(cur);
 			}
-			else if (cmd=="quit"){
+			else if (cmd.equals("quit")){
 				gameloop = false;
 			}
 
