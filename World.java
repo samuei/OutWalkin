@@ -13,7 +13,6 @@ public class World {
 	    String returnValue = "";
 	    FileReader file = null;
 	    String line = "0";
-	    //Room[] Rooms;
 	    try {
 	      file = new FileReader(filename);
 	      BufferedReader reader = new BufferedReader(file);
@@ -22,18 +21,19 @@ public class World {
 		Rooms = new Room[numRms];
 		line = reader.readLine();
 	      for(int k = 0; k<numRms;k++){
+	      	Rooms[k] = new Room[numRms];
+	      	returnValue = "";
 	    	  // returnValue, after this loop, holds the room desc.
 		      while (!(line.equals("#"))) {
 		        returnValue += line + "\n";
 			line = reader.readLine();
 		      }
-		  reader.readLine();    
+		  line = "";    
 		  Rooms[k].desc = returnValue;
 		  Rooms[k].nroom = Integer.parseInt(reader.readLine());
 		  Rooms[k].eroom = Integer.parseInt(reader.readLine());
 		  Rooms[k].sroom = Integer.parseInt(reader.readLine());
 		  Rooms[k].wroom = Integer.parseInt(reader.readLine());
-		  System.out.println("Got into For.");
 	      }
 	      reader.close();
 	      }
