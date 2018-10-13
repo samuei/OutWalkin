@@ -1,12 +1,13 @@
 2
-First Room
+Room Without a Description
 #
 1
 -1
 -1
 -1
-Second Room
-Second Line.
+Room With A Description
+This room is gorgeous.
+Absolutely stunning. You are amazed at the beauty of it.
 #
 -1
 -1

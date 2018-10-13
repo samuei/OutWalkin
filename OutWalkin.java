@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.io.IOException;
 public class OutWalkin {
 
 	public static void main(String[] args) {
@@ -7,42 +6,73 @@ public class OutWalkin {
 		Scanner scanner = new Scanner(System.in);
 		String cmd;
 		World world = null;
-		// TODO: Magic number due to not having save game functionality:
 		int cur = 0;
 		System.out.println("Let's go walking!");
-		// TODO: Yell at user for not having a World file selected
+		
+		if(args.length == 0)
+	    {
+			System.out.println("Dear God! There's no world! The world is empty!");
+			System.out.println("Remember to include the world as an argument next time, like this:");
+			System.out.println("\tOutWalkin rooms.txt");
+			scanner.close();
+			return;
+	    }
+	    
 		try{
-			world = new World(args[0]);
+			String worldfile = args[0];
+			world = new World(worldfile);
 		}
-		catch (IOException Err){
-			System.exit(-1);
+		catch (Exception Err){
+			System.out.println("Uh oh. Looks like the world file is malformed.");
+			System.out.println("Message : " + Err.getMessage());
+			System.out.println("Type    : " + Err.toString());
+			scanner.close();
+			return;
 		}
+		
 		System.out.println("I have a world!");
-		do{
-			world.display(cur);
-			System.out.println("Where would you like to go?");
+		System.out.println("Where would you like to go?");
+		world.longDisplay(cur);
+		
+		do {
+			System.out.print("\n>");
 			cmd = new String(scanner.next());
-			// I'd love to use a switch, here, but JDK6 :(
+			// TODO: This can probably be better handled as a hashmap.
 			if(cmd.equals("n") || cmd.equals("north")){
 				cur = world.goN(cur);
+				world.longDisplay(cur);
 			}
-			else if (cmd.equals("s")||cmd.equals("south")){
+			else if (cmd.equals("s") || cmd.equals("south")){
 				cur = world.goS(cur);
+				world.longDisplay(cur);
 			}
-			else if (cmd.equals("e")||cmd.equals("east")){
+			else if (cmd.equals("e") || cmd.equals("east")){
 				cur = world.goE(cur);
+				world.longDisplay(cur);
 			}
-			else if (cmd.equals("w")||cmd.equals("west")){
+			else if (cmd.equals("w") || cmd.equals("west")){
 				cur = world.goW(cur);
+				world.longDisplay(cur);
+			}
+			else if (cmd.equals("l") || cmd.equals("look")) {
+				world.shortDisplay(cur);
+			}
+			else if (cmd.equals("exits")) {
+				System.out.println(world.getExits(cur));
 			}
 			else if (cmd.equals("quit")){
 				gameloop = false;
 			}
+			else {
+				System.out.println("I'm sorry. I don't understand what you meant.");
+			}
 
 		}
-		while(gameloop);
+		while (gameloop);
+		
 		System.out.println("Thanks for walking with me.");
 		scanner.close();
+		return;
 	}
 	
 
