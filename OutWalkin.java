@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class OutWalkin {
 
 	public static void main(String[] args) {
@@ -21,52 +22,56 @@ public class OutWalkin {
 		try{
 			String worldfile = args[0];
 			world = new World(worldfile);
+			System.out.println("I have a world!");
 		}
 		catch (Exception Err){
-			System.out.println("Uh oh. Looks like the world file is malformed.");
-			System.out.println("Message : " + Err.getMessage());
-			System.out.println("Type    : " + Err.toString());
+			System.out.println("Uh oh. Looks like the world is malformed.");
+			Err.printStackTrace(System.out);
 			scanner.close();
 			return;
 		}
 		
-		System.out.println("I have a world!");
 		System.out.println("Where would you like to go?");
 		world.longDisplay(cur);
 		
 		do {
 			System.out.print("\n>");
 			cmd = new String(scanner.next());
-			// TODO: This can probably be better handled as a hashmap.
-			if(cmd.equals("n") || cmd.equals("north")){
-				cur = world.goN(cur);
-				world.longDisplay(cur);
+			// TODO: This can still probably be better handled as a hashmap.
+			switch (cmd) {
+				case "n":
+				case "north":
+					cur = world.goN(cur);
+					world.longDisplay(cur);
+					break;
+				case "s":
+				case "south":
+					cur = world.goS(cur);
+					world.longDisplay(cur);
+					break;
+				case "e":
+				case "east":
+					cur = world.goE(cur);
+					world.longDisplay(cur);
+					break;
+				case "w":
+				case "west":
+					cur = world.goW(cur);
+					world.longDisplay(cur);
+					break;
+				case "l":
+				case "look":
+					world.shortDisplay(cur);
+					break;
+				case "exits":
+					System.out.println(world.getExits(cur));
+					break;
+				case "quit":
+					gameloop = false;
+					break;
+				default:
+					System.out.println("I'm sorry. I don't understand what you meant.");
 			}
-			else if (cmd.equals("s") || cmd.equals("south")){
-				cur = world.goS(cur);
-				world.longDisplay(cur);
-			}
-			else if (cmd.equals("e") || cmd.equals("east")){
-				cur = world.goE(cur);
-				world.longDisplay(cur);
-			}
-			else if (cmd.equals("w") || cmd.equals("west")){
-				cur = world.goW(cur);
-				world.longDisplay(cur);
-			}
-			else if (cmd.equals("l") || cmd.equals("look")) {
-				world.shortDisplay(cur);
-			}
-			else if (cmd.equals("exits")) {
-				System.out.println(world.getExits(cur));
-			}
-			else if (cmd.equals("quit")){
-				gameloop = false;
-			}
-			else {
-				System.out.println("I'm sorry. I don't understand what you meant.");
-			}
-
 		}
 		while (gameloop);
 		

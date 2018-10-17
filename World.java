@@ -3,7 +3,7 @@ import java.io.*;
 public class World {
 	private Room[] Rooms;
 
-	public World (String filename)throws IOException{
+	public World (String filename) throws IOException{
 		String returnValue = "";
 		FileReader file = null;
 		String line = "0";

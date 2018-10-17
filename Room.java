@@ -12,6 +12,8 @@ public class Room {
 	}
 	
 	/**
+	 * Constructor with full parameters, for a room you already know everything about.
+	 * 
 	 * @param nroom
 	 * @param eroom
 	 * @param sroom
